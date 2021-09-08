@@ -48,22 +48,35 @@ tweets=df['tweet'].tolist()
 
 stemmedTokens=[]
 lemmatizedTokens=[]
+maggieTokens=[]
+stemmedMaggieTokens=[]
+lemmedMaggieTokens=[]
 for i in range (0,len(tweets)):#When in doubt write it like in C yes my brain stopped working
     tokens=word_tokenize(tweets[i])
     for word in tokens:
         if word not in stopWords:
+            maggieTokens.append(word)
             stemmed=ps.stem(word)
-            stemmedTokens.append(stemmed)
+            stemmedMaggieTokens.append(stemmed)
             lemmed=lem.lemmatize(word)
-            lemmatizedTokens.append(lemmed)
-topNumber=45
-from nltk.probability import FreqDist
-freqDistStemmed=FreqDist(stemmedTokens)
-top=freqDistStemmed.most_common(topNumber)
-top=pd.DataFrame(top)
-top.to_csv('stemmedCount.csv',index=False)#looking through csv is easier for me kay i have a small screen
+            lemmedMaggieTokens.append(lemmed)
 
-freqDistLemmed=FreqDist(lemmatizedTokens)
-top=freqDistLemmed.most_common(topNumber)
-top=pd.DataFrame(top)
-top.to_csv('lemmedCount.csv',index=False)
+maggieTokens=pd.DataFrame(maggieTokens)
+maggieTokens.to_csv('maggieTokens.csv',index=False)
+
+stemmedMaggieTokens=pd.DataFrame(stemmedMaggieTokens)
+stemmedMaggieTokens.to_csv('maggieTokensStemmed.csv',index=False)
+lemmedMaggieTokens=pd.DataFrame(lemmedMaggieTokens)
+lemmedMaggieTokens.to_csv('maggieTokensLemmed.csv',index=False)
+
+#topNumber=45
+#from nltk.probability import FreqDist
+#freqDistStemmed=FreqDist(stemmedTokens)
+#top=freqDistStemmed.most_common(topNumber)
+#top=pd.DataFrame(top)
+#top.to_csv('stemmedCount.csv',index=False)#looking through csv is easier for me kay i have a small screen
+#
+#freqDistLemmed=FreqDist(lemmatizedTokens)
+#top=freqDistLemmed.most_common(topNumber)
+#top=pd.DataFrame(top)
+#top.to_csv('lemmedCount.csv',index=False)
