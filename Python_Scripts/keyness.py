@@ -7,8 +7,8 @@ import string
 import pandas as pd
 
 cleanData=pd.read_csv('./vaccinesCleanData.csv')
-stemmedData=pd.read_csv('./TokensStemmed.csv')
-lemmedData=pd.read_csv('./TokensLemmed.csv')
+stemmedData=pd.read_csv('./maggieTokensStemmed.csv')
+lemmedData=pd.read_csv('./maggieTokensLemmed.csv')
 
 
 tweets=cleanData['tweet'].to_numpy()# values() is deprecated
@@ -29,8 +29,11 @@ for i in range(len(tweets)):
 	[sublist.append(word) for word in tweets[i] if word not in stopWords and word !='&']
 	test.append(sublist)
 #preparing to use test as an empty list again
+#tweets=pd.DataFrame(test);
 tweets=test
-
+tweets=pd.DataFrame({"tweet":[" ".join(tweet) for tweet in tweets]})
+tweets.to_csv("./noStopWordTweets.csv",index=False)
+'''
 #this block of code could have been a for loop
 test=[]
 pattern='[0-9]'
@@ -58,3 +61,4 @@ lem_corp_key=ct.keyness(clean_freq,lem_freq, effect="log-ratio")
 print("Target: stem| Reference : lemmed tokens")
 ct.head(lem_corp_key,hits=hits)
 #the block of code to print out the keyness
+'''
