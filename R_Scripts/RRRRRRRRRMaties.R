@@ -23,7 +23,7 @@ inspect(corpus[1:5])
 
 #Our dataset also doesn't have stopword also -derek
 cleanset <-tm_map(corpus,removeWords, stopwords('english'))
-cleanset <-tm_map(corpus,removeWords, c('things','countries','bonjour','ago','dont','theyve'))
+cleanset <-tm_map(corpus,removeWords, c('things','countries','bonjour','ago','dont','theyve','vaccines','vaccine'))
 inspect(cleanset[1:5])
 
 #our dataset already has no URLs and I am omitting the removal of URL from the video -derek
