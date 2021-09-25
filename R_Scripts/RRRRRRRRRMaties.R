@@ -44,3 +44,41 @@ w<- subset(w,w>25)
 barplot(w,
         las=2,
         col = rainbow(10))
+
+install.packages("wordcloud")
+install.packages("wordcloud2")
+#for word cloud - Ismael
+library(wordcloud)
+wordcount <- sort(rowSums(tdm), decreasing = TRUE)
+set.seed (100)
+wordcloud(words = names(w), freq = w, max.words = 200, random.order = F, min.freq = 50)
+
+install.packages("syuzhet")
+install.packages("lubridate")
+install.packages("ggplot2")
+install.packages("scales")
+install.packages("reshape2")
+install.packages("dplyr")
+
+#sentiment analysys - Ismael
+library(syuzhet)
+library(lubridate)
+library(ggplot2)
+library(scales)
+library(reshape2)
+library(dplyr)
+
+#Read File
+tweetsData <- read.csv('noStopWordTweets.csv',header=T)
+
+library(tm)
+tweets <-iconv(tweetsData$tweet,to ="utf-8")
+
+#Obtain sentiment scores - Ismael
+s <- get_nrc_sentiment(tweets)
+head(s)
+tweets[4]
+
+get_nrc_sentiment('delay')
+
+barplot(colSums(s), las = 2, col = rainbow(10), ylab = 'Count', main = 'Sentiment Scores')
