@@ -47,7 +47,7 @@ barplot(w,
 
 install.packages("wordcloud")
 install.packages("wordcloud2")
-#for word cloud - Ismael
+#for word cloud - Ismael and Margaret
 library(wordcloud)
 wordcount <- sort(rowSums(tdm), decreasing = TRUE)
 set.seed (100)
@@ -60,7 +60,7 @@ install.packages("scales")
 install.packages("reshape2")
 install.packages("dplyr")
 
-#sentiment analysys - Ismael
+#sentiment analysys - Ismael and Riane
 library(syuzhet)
 library(lubridate)
 library(ggplot2)
@@ -81,4 +81,4 @@ tweets[4]
 
 get_nrc_sentiment('delay')
 
-barplot(colSums(s), las = 2, col = rainbow(10), ylab = 'Count', main = 'Sentiment Scores')
+barplot(colSums(s), las = 2, col = rainbow(10), ylab = 'Count', main = 'Sentiment Scores') #Clyde Vincent
